@@ -50,6 +50,7 @@ class Instagram extends React.Component {
             <img src={this.state.image_src} alt={this.state.image_alt} />
           </a>
           <figcaption>
+            <a href={`https://www.instagram.com/${this.state.user}/`}>@{this.state.user}</a>{" "}
             {this.state.image_caption}
           </figcaption>
         </figure>
