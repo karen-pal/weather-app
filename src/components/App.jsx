@@ -1,7 +1,12 @@
 import React from "react";
+import Body from "./Body.jsx";
 
 function App() {
-  return <h1>Your magic goes here!</h1>;
+           //<Header />
+           //<Footer />
+  return <div>
+           <Body />
+         </div>;
 }
 
 export default App;
