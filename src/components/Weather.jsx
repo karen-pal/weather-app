@@ -1,6 +1,6 @@
 import React from "react";
 import WeatherCard from "./WeatherCard.jsx";
-import Forecast from "./Forecast.jsx";
+import WeatherSelector from "./WeatherSelector.jsx";
 import axios from "axios";
 
 class Weather extends React.Component {
@@ -60,7 +60,7 @@ class Weather extends React.Component {
   render() {
     if (this.state.loading_current || this.state.loading_forecast) {
       return (
-        <div className='weather-container weather-loading'>
+        <div className='weather-container weather-container-loading'>
           [Inserte imágen de carga]
         </div>
       );
@@ -68,16 +68,16 @@ class Weather extends React.Component {
     
     if (!this.state.info_current || !this.state.info_forecast) {
       return (
-        <div className='weather-container'>
+        <div className='weather-container weather-container-empty'>
           
         </div>
       );
     }
     
     return (
-      <div className='weather-container'>
+      <div className='weather-container weather-container-loaded'>
         <WeatherCard current={this.state.info_current} forecast={this.state.info_forecast} />
-        <Forecast info={this.state.info_forecast} />
+        <WeatherSelector info={this.state.info_forecast} />
       </div>
     );
   }
