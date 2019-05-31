@@ -17,3 +17,12 @@ body {
   
   Ejemplo: .weather-card-clear
 */
+
+.weather-card .label { color: gray; }
+.weather-card .value { font-weight: bold; }
+
+.weather-card .description {
+  font-weight: bold;
+}
+
+.selected { border-style: inset; }
