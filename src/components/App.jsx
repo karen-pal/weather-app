@@ -4,7 +4,7 @@ import Body from "./Body.jsx";
 function App() {
            //<Header />
            //<Footer />
-  return <div>
+  return <div className="app">
            <Body />
          </div>;
 }

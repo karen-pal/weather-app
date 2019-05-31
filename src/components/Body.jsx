@@ -1,16 +1,28 @@
 import React from "react";
 import Instagram from "./Instagram.jsx"
 import SearchBar from "./SearchBar.jsx"
-           //<SearchBar />
-           //<Current />
-           //<Forecast />
+import Weather from "./Weather.jsx"
 
-function Body() {
-  return <article>
-           El tiempo...
-           <SearchBar />
-           <Instagram user="kardaver" />
-         </article>;
+class Body extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { cityCode: localStorage.getItem('cityCode') };
+  }
+
+
+  render() {
+    return (
+      <div className="body">
+        El tiempo...
+        <SearchBar value={this.state.cityCode} onSubmit={value => {
+          localStorage.setItem('cityCode', value);
+          this.setState({ cityCode: value })
+        }} />
+        <Weather ref="weather" cityCode={this.state.cityCode} />
+      </div>
+    );
+  }
 }
+//           <Instagram user="kardaver" />
 
 export default Body;
