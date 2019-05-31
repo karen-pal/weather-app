@@ -43,6 +43,8 @@ class WeatherCard extends React.Component {
       console.assert(info);
     }
     
+    const dayInfo = this.props.dailyForecast[this.props.selected_day];
+
     let sunset = '', sunrise = '';
     
     if (info.sys.sunset !== undefined) {
@@ -74,12 +76,12 @@ class WeatherCard extends React.Component {
           </div>
           <div className='min'>
             <span className='label'>Min:</span>{' '}
-            <span className='value'>{info.main.temp_min}</span>
+            <span className='value'>{dayInfo.min}</span>
             <span className='unit'>°C</span>
           </div>
           <div className='max'>
             <span className='label'>Max:</span>{' '}
-            <span className='value'>{info.main.temp_max}</span>
+            <span className='value'>{dayInfo.max}</span>
             <span className='unit'>°C</span>
           </div>
           <div className='wind'>

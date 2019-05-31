@@ -8,13 +8,18 @@ class SearchBar extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { cityNamesInputs: '' };
-		/*axios.get('/city.list.json').then(response => {
+		axios.get('/city.list.json').then(response => {
 			for (const { name, country } of response.data) {
 				const option = document.createElement('option');
 				option.value = `${name}, ${country}`;
-				this.refs.datalist.appendChild(option);
+
+				if (this.refs.datalist) {
+					this.refs.datalist.appendChild(option);
+				} else {
+					// COMPLETAR: Cuando datalist es undefined no se hace nada!
+				}
 			}
-		});*/
+		});
 	}
 
 	render() {

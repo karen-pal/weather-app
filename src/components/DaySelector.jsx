@@ -15,18 +15,23 @@ class WeatherSelector extends React.Component {
     const dayButtons = [];
     const selected = this.props.selected_day;
     const now = new Date();
-    const this_day = now.getDay();
+    const today = now.getDay();
     
-    for (let i = 0; i < 7; i++) {
-      const day = (this_day + i) % 7;
+    for (let i = 0; i < 5; i++) {
+      const day = (today + i) % 7;
       
       dayButtons.push(
         <button
           onClick={this.buttonHandler(i)}
           key={i}
-          className={i === selected ? 'selected' : ''}
+          className={
+            (i === selected ? 'selected ' : '') +
+            'day-' + this.props.dailyForecast[selected].descr.toLowerCase()
+          }
         >
-          {this.getDayName(day)}
+          {this.getDayName(day)}<br />
+          {this.props.dailyForecast[selected].min}/
+          {this.props.dailyForecast[selected].max}°C
         </button>
       );
     }
