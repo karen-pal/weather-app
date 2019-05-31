@@ -1,5 +1,5 @@
 import React from "react";
-import Current from "./Current.jsx";
+import WeatherCard from "./WeatherCard.jsx";
 import Forecast from "./Forecast.jsx";
 import axios from "axios";
 
@@ -65,10 +65,18 @@ class Weather extends React.Component {
         </div>
       );
     }
-
+    
+    if (!this.state.info_current || !this.state.info_forecast) {
+      return (
+        <div className='weather-container'>
+          
+        </div>
+      );
+    }
+    
     return (
       <div className='weather-container'>
-        <Current info={this.state.info_current} forecast={this.state.info_forecast} />
+        <WeatherCard current={this.state.info_current} forecast={this.state.info_forecast} />
         <Forecast info={this.state.info_forecast} />
       </div>
     );
