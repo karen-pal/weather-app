@@ -59,12 +59,16 @@ class Weather extends React.Component {
 
   render() {
     if (this.state.loading_current || this.state.loading_forecast) {
-      return <div className='weather'>Cargando...</div>;
+      return (
+        <div className='weather-container weather-loading'>
+          [Inserte imágen de carga]
+        </div>
+      );
     }
 
     return (
-      <div className='weather'>
-        <Current info={this.state.info_current} />
+      <div className='weather-container'>
+        <Current info={this.state.info_current} forecast={this.state.info_forecast} />
         <Forecast info={this.state.info_forecast} />
       </div>
     );

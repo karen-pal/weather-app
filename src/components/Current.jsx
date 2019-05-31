@@ -9,6 +9,10 @@ function capitalizar(string) {
   return string[0].toUpperCase() + string.substring(1);
 }
 
+function getHHMMFromTime(time) {
+  return zeroPad(time.getHours()) + ':' + zeroPad(time.getMinutes());
+}
+
 class Current extends React.Component {
   constructor(props) {
     super(props);
@@ -17,30 +21,62 @@ class Current extends React.Component {
   render() {
     if (this.props.info !== undefined) {
       const info = this.props.info;
-      // Esto borra todos los espacios blancos de cityCode.
-      console.log(info.data);
       const sunset = new Date(info.data.sys.sunset * 1000);
       const sunrise = new Date(info.data.sys.sunrise * 1000);
+      
+      console.log(info.data);
 
       return (
-        <div className='current'>
+        <div className={'weather-card ' + info.data.weather[0].main}>
           <h1>{info.city} ({info.country})</h1>
-          <div>
-            Temperatura: {info.data.main.temp} °C <br />
-            {capitalizar(info.data.weather[0].description)} <br />
-            Presión: {info.data.main.pressure / 1000} mbar <br />
-            Humedad: {info.data.main.humidity} % <br />
-            Temperatura Mínima: {info.data.main.temp_min} °C <br />
-            Temperatura Máxima: {info.data.main.temp_max} °C <br />
-            Salida del sol: {zeroPad(sunrise.getHours())}:{zeroPad(sunrise.getMinutes())} hs <br />
-            Puesta del sol: {zeroPad(sunset.getHours())}:{zeroPad(sunset.getMinutes())} hs <br />
-            Viento: {info.data.wind.speed} m/s <br />
-
+          <div className='weather-info-container'>
+            <div className='temp'>
+              <span className='label'>Temp:</span>{' '}
+              <span className='value'>{info.data.main.temp}</span>
+              <span className='unit'>°C</span>
+            </div>
+            <div className='min'>
+              <span className='label'>Min:</span>{' '}
+              <span className='value'>{info.data.main.temp_min}</span>
+              <span className='unit'>°C</span>
+            </div>
+            <div className='max'>
+              <span className='label'>Max:</span>{' '}
+              <span className='value'>{info.data.main.temp_max}</span>
+              <span className='unit'>°C</span>
+            </div>
+            <div className='wind'>
+              <span className='label'>Viento:</span>{' '}
+              <span className='value'>{info.data.wind.speed}</span>{' '}
+              <span className='unit'>m/s</span>
+            </div>
+            <div className='pressure'>
+              <span className='label'>Presión:</span>{' '}
+              <span className='value'>{info.data.main.pressure / 1000}</span>{' '}
+              <span className='unit'>mbar</span>
+            </div>
+            <div className='humidity'>
+              <span className='label'>Humedad:</span>{' '}
+              <span className='value'>{info.data.main.humidity}</span>
+              <span className='unit'>%</span>
+            </div>
+            <div className='sunrise'>
+              <span className='label'>Salida del sol:</span>{' '}
+              <span className='value'>{getHHMMFromTime(sunrise)}</span>
+            </div>
+            <div className='sunset'>
+              <span className='label'>Puesta del sol:</span>{' '}
+              <span className='value'>{getHHMMFromTime(sunset)}</span>
+            </div>
+          </div>
+          <div className='description'>
+            {capitalizar(info.data.weather[0].description)}
           </div>
         </div>
       );
     }
-    return <div className='current'>Ingresá el código de una ciudad.</div>;
+    
+    return <div className='weather-card'>Ingresá el código de una ciudad.</div>;
   }
 }
 
