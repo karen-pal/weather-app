@@ -6,7 +6,7 @@ import Weather from "./Weather.jsx"
 class Body extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { cityCode: localStorage.getItem('cityCode') };
+    this.state = { cityCode: localStorage.getItem('cityCode') || undefined };
   }
 
 
