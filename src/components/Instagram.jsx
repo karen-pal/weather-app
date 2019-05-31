@@ -1,13 +1,14 @@
 import React from "react";
+import axios from "axios";
 
 class Instagram extends React.Component {
   constructor(props) {
     super(props);
     this.state = {image_src: undefined, user: props.user};
 
-    fetch(`https://www.instagram.com/${props.user}/?__a=1`)
-      .then(response => response.json())
-      .then(json => {
+    axios.get(`https://www.instagram.com/${props.user}/?__a=1`)
+      .then(response => {
+        const json = response.data;
         // Elegimos una imagen al azar entre las últimas.
         
         // posts es un arreglo con las 12 últimas imágenes del perfil.
