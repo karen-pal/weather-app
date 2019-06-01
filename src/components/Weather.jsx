@@ -32,7 +32,7 @@ class Weather extends React.Component {
       this.lastCityCode = this.props.cityCode;
       this.setState({ loading_current: true, loading_forecast: true });
 
-      const cityCode = this.props.cityCode.replace(/\s+/g, '');
+      const cityCode = this.props.cityCode;
       const city = cityCode.replace(/,.*$/, '');
       const country = cityCode.replace(/^.*,/, '').toUpperCase();
 
