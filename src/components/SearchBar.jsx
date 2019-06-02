@@ -1,28 +1,22 @@
 import React from "react";
 import axios from "axios";
-           //<SearchBar />
-           //<Current />
-           //<Forecast />
 
 class SearchBar extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { cityNamesInputs: '' };
+	}
+	
+	// realizamos el pedido aquí ya que necesitamos
+	// asegurarnos que el <datalist> ya esté creado
+	componentDidMount() {
 		axios.get('/city.list.json').then(response => {
-			//let start = Date.now();
-			let options = "";
-			let currentOption = "";
+			let options = '';
 			for (const { name, country } of response.data) {
-				currentOption = `${name}, ${country}`;
-				options = options + "<option value='"+currentOption+"'>";
+				options = options + `<option value='${name}, ${country}'>`;
 			}
 
-				if (this.refs.datalist) {
-					this.refs.datalist.innerHTML= options;
-				} else {
-					// COMPLETAR: Cuando datalist es undefined no se hace nada!
-				}
-				//alert((Date.now() - start) / 1000);
+			this.refs.datalist.innerHTML= options;
 		});
 	}
 
@@ -32,7 +26,14 @@ class SearchBar extends React.Component {
 	  			event.preventDefault();
 	  			this.props.onSubmit(this.refs.input.value)
 	  		}}>
-			  <input type="text" ref="input" list="city-names" defaultValue={this.props.value || ''} />
+	  		<label htmlFor="buscar-ciudad">Buscar ciudad:</label><br />
+			  <input
+			  	id="buscar-ciudad"
+			  	type="search"
+			  	ref="input"
+			  	list="city-names"
+			  	defaultValue={this.props.value || ''}
+			  /><br />
 			  <input type="submit" value="Buscar" />
 				<datalist id="city-names" ref="datalist"></datalist>
 	    </form>
