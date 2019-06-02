@@ -19,7 +19,8 @@ class HourSelector extends React.Component {
   render() {
     const {selected_day, selected_hour} = this.props;
     const now = new Date();
-    const offset = selected_day === 0 ? Math.ceil(now.getHours() / 3) : 0;
+    const offset = selected_day === 0 ? Math.ceil(now.getHours() + 1 / 3) : 0;
+    // Es un error mostrar el botón de las 21:00 si son las 21:20.
     const hourButtons = [];
     
     for (let i = offset; i < 8; i++) {

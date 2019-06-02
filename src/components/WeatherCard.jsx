@@ -40,7 +40,18 @@ class WeatherCard extends React.Component {
           }
         }
       }
-      console.assert(info);
+      
+
+      if (info === undefined) {
+        console.error({ forecast, selected_day, selected_hour, message: 'No hay info para el dia y la hora actual.' });
+        return <div className='weather-card error'>
+          <h1>Ups!</h1>
+          <p>
+            No hay información de clima para el día y la hora seleccionados.{' '}
+            Intentalo nuevamente.
+          </p>
+        </div>;
+      }
     }
     
     const dayInfo = this.props.dailyForecast[this.props.selected_day];
