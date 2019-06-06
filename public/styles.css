@@ -30,4 +30,4 @@ body {
 
 .selected { border-style: inset; }
 
-.day-selector { position:absolute; bottom:0; }
+.day-selector { position:absolute; top:450px; }
