@@ -1,6 +1,9 @@
 
 body {
   font: 14px sans-serif;
+  background-image: url("./images/soleado.png");
+  background-repeat: no-repeat;
+  width: 750px;
 }
 
 /*
@@ -17,8 +20,8 @@ body {
   
   Ejemplo: .weather-card-clear
 */
-
-.weather-card .label { color: gray; }
+.weather-card { float: right; }
+.weather-card .label { color: #011627; }
 .weather-card .value { font-weight: bold; }
 
 .weather-card .description {
@@ -26,3 +29,5 @@ body {
 }
 
 .selected { border-style: inset; }
+
+.day-selector { position:absolute; bottom:0; }
