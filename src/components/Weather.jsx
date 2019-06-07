@@ -3,6 +3,7 @@ import WeatherCard from "./WeatherCard.jsx";
 import DaySelector from "./DaySelector.jsx";
 import HourSelector from "./HourSelector.jsx";
 import axios from "axios";
+import PropTypes from "prop-types";
 
 class Weather extends React.Component {
   constructor(props) {
@@ -145,5 +146,11 @@ class Weather extends React.Component {
     );
   }
 }
+Weather.defaultProps = {
+  cityCode: "Córdoba,ES"
+};
+Weather.propTypes = {
+  cityCode: PropTypes.string
+};
 
 export default Weather
