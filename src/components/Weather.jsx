@@ -34,52 +34,59 @@ class Weather extends React.Component {
     if (lastCityCode !== cityCode) {
       this.lastCityCode = cityCode;
       this.setState({ loading_current: true, loading_forecast: true });
-      const city = cityCode.replace(/,.*$/, '');
-      const country = cityCode.replace(/^.*,/, '').toUpperCase();
+      const city = cityCode.replace(/,.*$/, "");
+      const country = cityCode.replace(/^.*,/, "").toUpperCase();
 
       // Petición para Current
-      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${this.appId}&units=metric&lang=es`)
-      .then(response => {
-        this.setState({
-          city, country,
-          current: response.data,
-          loading_current: false
+      axios
+        .get(
+          `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${this.appId}&units=metric&lang=es`
+        )
+        .then(response => {
+          this.setState({
+            city,
+            country,
+            current: response.data,
+            loading_current: false
+          });
+        })
+        .catch(err => {
+          console.assert(err.message === "Request failed with status code 404");
+          console.log(err);
+          alert("Locación inválida 😿 ");
         });
-      })
-      .catch(err => {
-        console.assert(err.message === "Request failed with status code 404");
-        console.log(err);
-        alert("Locación inválida 😿 ");
-      });
 
       // Petición para Forecast
-      axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&appid=${this.appId}&units=metric&lang=es`)
-      .then(response => {
-        //console.log(response.data)
-        const dailyForecast = this.getDailyForecast(response.data);
+      axios
+        .get(
+          `https://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&appid=${this.appId}&units=metric&lang=es`
+        )
+        .then(response => {
+          //console.log(response.data)
+          const dailyForecast = this.getDailyForecast(response.data);
 
-        this.setState({
-          forecast: response.data,
-          loading_forecast: false,
-          dailyForecast
+          this.setState({
+            forecast: response.data,
+            loading_forecast: false,
+            dailyForecast
+          });
+        })
+        .catch(err => {
+          console.log(err);
+          alert("No hay pronóstico disponible 😿 ");
         });
-      })
-      .catch(err => {
-        console.log(err);
-        alert("No hay pronóstico disponible 😿 ")
-      })
     }
   }
 
   //Calculamos los máximos y mínimos de cada día
   getDailyForecast(forecast) {
     const dailyForecast = [
-      {min: Infinity, max: -Infinity, descr: 'Clear' },
-      {min: Infinity, max: -Infinity, descr: 'Clear' },
-      {min: Infinity, max: -Infinity, descr: 'Clear' },
-      {min: Infinity, max: -Infinity, descr: 'Clear' },
-      {min: Infinity, max: -Infinity, descr: 'Clear' },
-      {min: Infinity, max: -Infinity, descr: 'Clear' }
+      { min: Infinity, max: -Infinity, descr: "Clear" },
+      { min: Infinity, max: -Infinity, descr: "Clear" },
+      { min: Infinity, max: -Infinity, descr: "Clear" },
+      { min: Infinity, max: -Infinity, descr: "Clear" },
+      { min: Infinity, max: -Infinity, descr: "Clear" },
+      { min: Infinity, max: -Infinity, descr: "Clear" }
     ];
 
     const now = new Date();
@@ -106,22 +113,18 @@ class Weather extends React.Component {
   render() {
     if (this.state.loading_current || this.state.loading_forecast) {
       return (
-        <div className='weather-container weather-container-loading'>
+        <div className="weather-container weather-container-loading">
           [Inserte imágen de carga]
         </div>
       );
     }
-    
+
     if (!this.state.current || !this.state.forecast) {
-      return (
-        <div className='weather-container weather-container-empty'>
-          
-        </div>
-      );
+      return <div className="weather-container weather-container-empty"></div>;
     }
-    
+
     return (
-      <div className='weather-container weather-container-loaded'>
+      <div className="weather-container weather-container-loaded">
         <HourSelector
           selected_day={this.state.selected_day}
           selected_hour={this.state.selected_hour}
