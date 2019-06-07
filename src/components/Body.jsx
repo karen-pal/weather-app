@@ -10,11 +10,12 @@ class Body extends React.Component {
   }
 
   render() {
+    const { cityCode } = this.state;
     return (
       <div className="body">
         El tiempo...
         <SearchBar
-          value={this.state.cityCode}
+          value={cityCode}
           onSubmit={value => {
             localStorage.setItem("cityCode", value);
             this.setState({ cityCode: value });
