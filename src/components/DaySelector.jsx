@@ -30,8 +30,8 @@ class WeatherSelector extends React.Component {
           }
         >
           {this.getDayName(day)}<br />
-          {this.props.dailyForecast[selected].min}/
-          {this.props.dailyForecast[selected].max}°C
+          {this.props.dailyForecast[i].min}/
+          {this.props.dailyForecast[i].max}°C
         </button>
       );
     }
