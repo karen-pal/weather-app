@@ -34,45 +34,34 @@ class Weather extends React.Component {
     if (lastCityCode !== cityCode) {
       this.lastCityCode = cityCode;
       this.setState({ loading_current: true, loading_forecast: true });
-      const city = cityCode.replace(/,.*$/, "");
-      const country = cityCode.replace(/^.*,/, "").toUpperCase();
+      const city = cityCode.replace(/,.*$/, "").trim();
+      const country = cityCode.replace(/^.*,/, "").toUpperCase().trim();
+      const apiUrl = `https://api.openweathermap.org/data/2.5/`;
+      const params = `?q=${city},${country}&appid=${this.appId}&units=metric&lang=es`;
 
       // Petición para Current
-      axios
-        .get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${this.appId}&units=metric&lang=es`
-        )
-        .then(response => {
+      Promise.all([
+        axios.get(`${apiUrl}weather${params}`),
+        axios.get(`${apiUrl}forecast${params}`)
+      ])
+        .then(([weatherResponse, forecastResponse]) => {
+          const dailyForecast = this.getDailyForecast(forecastResponse.data);
+          
           this.setState({
             city,
             country,
-            current: response.data,
-            loading_current: false
-          });
-        })
-        .catch(err => {
-          console.assert(err.message === "Request failed with status code 404");
-          console.log(err);
-          alert("Locación inválida 😿 ");
-        });
-
-      // Petición para Forecast
-      axios
-        .get(
-          `https://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&appid=${this.appId}&units=metric&lang=es`
-        )
-        .then(response => {
-          //console.log(response.data)
-          const dailyForecast = this.getDailyForecast(response.data);
-
-          this.setState({
-            forecast: response.data,
+            current: weatherResponse.data,
+            loading_current: false,
+            forecast: forecastResponse.data,
             loading_forecast: false,
             dailyForecast
           });
         })
+        
         .catch(err => {
+          console.assert(err.message === "Request failed with status code 404");
           console.log(err);
+          alert("Locación inválida 😿 ");
           alert("No hay pronóstico disponible 😿 ");
         });
     }
