@@ -53,9 +53,9 @@ class HourSelector extends React.Component {
 }
 
 HourSelector.defaultProps = {
-  onChange: 0
+  onChange: a => 0
 };
 HourSelector.propTypes = {
-  onChange: PropTypes.number
+  onChange: PropTypes.function
 };
 export default HourSelector;

@@ -1,9 +1,9 @@
 import React from "react";
+import axios from "axios";
+import PropTypes from "prop-types";
 import WeatherCard from "./WeatherCard.jsx";
 import DaySelector from "./DaySelector.jsx";
 import HourSelector from "./HourSelector.jsx";
-import axios from "axios";
-import PropTypes from "prop-types";
 
 class Weather extends React.Component {
   constructor(props) {
@@ -29,11 +29,11 @@ class Weather extends React.Component {
   }
 
   updateCity() {
-    if (this.lastCityCode !== this.props.cityCode) {
-      this.lastCityCode = this.props.cityCode;
+    const { lastCityCode } = this;
+    const { cityCode } = this.props;
+    if (lastCityCode !== cityCode) {
+      this.lastCityCode = cityCode;
       this.setState({ loading_current: true, loading_forecast: true });
-
-      const cityCode = this.props.cityCode;
       const city = cityCode.replace(/,.*$/, '');
       const country = cityCode.replace(/^.*,/, '').toUpperCase();
 
@@ -147,10 +147,12 @@ class Weather extends React.Component {
   }
 }
 Weather.defaultProps = {
-  cityCode: "Córdoba,ES"
+  cityCode: "Córdoba,ES",
+  lastCityCode: "Córdoba,ES"
 };
 Weather.propTypes = {
-  cityCode: PropTypes.string
+  cityCode: PropTypes.string,
+  lastCityCode: PropTypes.string
 };
 
-export default Weather
+export default Weather;
