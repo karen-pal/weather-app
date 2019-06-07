@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-
+import WeatherAttributes from "./WeatherAttributes.jsx"
 function zeroPad(n) {
   return n < 10 ? "0" + n : String(n);
 }
@@ -68,22 +68,22 @@ class WeatherCard extends React.Component {
     if (info.sys.sunset !== undefined) {
       const sunset_time = new Date(info.sys.sunset * 1000);
       sunset = (
-        <div className="sunset">
-          <span className="label">Puesta del sol:</span>{" "}
-          <span className="value">{getHHMMFromTime(sunset_time)}</span>
-          <span className="unit">hs</span>
-        </div>
+        <WeatherAttributes 
+          label="Puesta del sol" 
+          value={getHHMMFromTime(sunset_time)} 
+          unit="hs"
+        />
       );
     }
 
     if (info.sys.sunrise !== undefined) {
       const sunrise_time = new Date(info.sys.sunrise * 1000);
       sunrise = (
-        <div className="sunrise">
-          <span className="label">Salida del sol:</span>{" "}
-          <span className="value">{getHHMMFromTime(sunrise_time)}</span>
-          <span className="unit">hs</span>
-        </div>
+        <WeatherAttributes 
+          label="Salida del sol" 
+          value={getHHMMFromTime(sunrise_time)} 
+          unit="hs"
+        />
       );
     }
 
@@ -95,38 +95,36 @@ class WeatherCard extends React.Component {
           {this.props.city} ({this.props.country})
         </h1>
         <div className="weather-info-container">
-          <div className="temp">
-            <span className="label">Temp:</span>{" "}
-            <span className="value">{info.main.temp}</span>
-            <span className="unit">°C</span>
-          </div>
-          <div className="min">
-            <span className="label">Min:</span>{" "}
-            <span className="value">{dayInfo.min}</span>
-            <span className="unit">°C</span>
-          </div>
-          <div className="max">
-            <span className="label">Max:</span>{" "}
-            <span className="value">{dayInfo.max}</span>
-            <span className="unit">°C</span>
-          </div>
-          <div className="wind">
-            <span className="label">Viento:</span>{" "}
-            <span className="value">{info.wind.speed}</span>{" "}
-            <span className="unit">m/s</span>
-          </div>
-          <div className="pressure">
-            <span className="label">Presión:</span>{" "}
-            <span className="value">
-              {(info.main.pressure / 1000).toFixed(3)}
-            </span>{" "}
-            <span className="unit">mbar</span>
-          </div>
-          <div className="humidity">
-            <span className="label">Humedad:</span>{" "}
-            <span className="value">{info.main.humidity}</span>
-            <span className="unit">%</span>
-          </div>
+          <WeatherAttributes 
+            label="Temp:" 
+            value={info.main.temp} 
+            unit="°C"
+          />
+          <WeatherAttributes 
+            label="Min:" 
+            value={dayInfo.min} 
+            unit="°C"
+          />
+          <WeatherAttributes 
+            label="Max:" 
+            value={dayInfo.max} 
+            unit="°C"
+          />
+          <WeatherAttributes 
+            label="Viento:" 
+            value={info.wind.speed} 
+            unit="m/s"
+          />
+          <WeatherAttributes 
+            label="Presión:" 
+            value={(info.main.pressure / 1000).toFixed(3)} 
+            unit="mbar"
+          />
+          <WeatherAttributes 
+            label="Humedad:" 
+            value={info.main.humidity} 
+            unit="%"
+          />
           {sunrise}
           {sunset}
         </div>
