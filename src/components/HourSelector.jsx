@@ -8,7 +8,7 @@ function zeroPad(n) {
 class HourSelector extends React.Component {
   constructor(props) {
     super(props);
-    this.buttonHandler = hour => _ => {
+    this.buttonHandler = hour => () => {
       const { onChange } = this.props;
       onChange(hour);
     };
@@ -53,7 +53,7 @@ class HourSelector extends React.Component {
 }
 
 HourSelector.defaultProps = {
-  onChange: _ => 0,
+  onChange: () => 0,
   selectedDay: 0,
   selectedHour: 0
 };
