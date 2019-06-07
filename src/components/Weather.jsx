@@ -115,8 +115,8 @@ class Weather extends React.Component {
     return (
       <div className="weather-container weather-container-loaded">
         <HourSelector
-          selected_day={this.state.selected_day}
-          selected_hour={this.state.selected_hour}
+          selectedDay={this.state.selected_day}
+          selectedHour={this.state.selected_hour}
           onChange={n => this.setState({ selected_hour: n })}
         />
         <WeatherCard
@@ -131,7 +131,12 @@ class Weather extends React.Component {
         <DaySelector
           forecast={this.state.forecast}
           selected_day={this.state.selected_day}
-          onSelect={n => this.setState({ selected_day: n })}
+          onSelect={n => {
+            this.setState({
+              selected_day: n,
+              selected_hour: n === 0 ? 0 : this.state.selected_hour
+            });
+          }}
           dailyForecast={this.state.dailyForecast}
         />
       </div>

@@ -21,6 +21,19 @@ class HourSelector extends React.Component {
     // Es un error mostrar el botón de las 21:00 si son las 21:20.
     const hourButtons = [];
 
+    if (selectedDay === 0) {
+      hourButtons.push(
+        <button
+          type="submit"
+          onClick={this.buttonHandler(0)}
+          key={0}
+          className={selectedHour === 0 ? "selected" : ""}
+        >
+          Ahora
+        </button>
+      );
+    }
+
     for (let i = offset; i < 8; i += 1) {
       hourButtons.push(
         <button
@@ -35,18 +48,6 @@ class HourSelector extends React.Component {
       );
     }
 
-    if (selectedDay === 0) {
-      hourButtons.unshift(
-        <button
-          type="submit"
-          onClick={this.buttonHandler(0)}
-          key={0}
-          className={selectedHour === 0 ? "selected" : ""}
-        >
-          Ahora
-        </button>
-      );
-    }
 
     return <div className="hour-selector">{hourButtons}</div>;
   }
