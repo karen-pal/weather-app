@@ -2,18 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function zeroPad(n) {
-  return n < 10 ? "0" + n : String(n);
-}
-
-function getHHMMFromTime(time) {
-  return zeroPad(time.getHours()) + ":" + zeroPad(time.getMinutes());
+  return n < 10 ? `0${n}` : String(n);
 }
 
 class HourSelector extends React.Component {
   constructor(props) {
     super(props);
-    this.buttonHandler = hour => event => {
-      this.props.onChange(hour);
+    this.buttonHandler = hour => _ => {
+      const { onChange } = this.props;
+      onChange(hour);
     };
   }
 
@@ -27,11 +24,13 @@ class HourSelector extends React.Component {
     for (let i = offset; i < 8; i += 1) {
       hourButtons.push(
         <button
+          type="submit"
           onClick={this.buttonHandler(i)}
           key={i}
           className={selectedHour === i ? "selected" : ""}
         >
-          {zeroPad(i * 3)}:00
+          {zeroPad(i * 3)}
+          :00
         </button>
       );
     }
@@ -39,6 +38,7 @@ class HourSelector extends React.Component {
     if (selectedDay === 0) {
       hourButtons.unshift(
         <button
+          type="submit"
           onClick={this.buttonHandler(0)}
           key={0}
           className={selectedHour === 0 ? "selected" : ""}
@@ -53,9 +53,13 @@ class HourSelector extends React.Component {
 }
 
 HourSelector.defaultProps = {
-  onChange: a => 0
+  onChange: _ => 0,
+  selectedDay: 0,
+  selectedHour: 0
 };
 HourSelector.propTypes = {
-  onChange: PropTypes.function
+  onChange: PropTypes.func,
+  selectedDay: PropTypes.number,
+  selectedHour: PropTypes.number
 };
 export default HourSelector;
