@@ -48,6 +48,7 @@ class Weather extends React.Component {
       .catch(err => {
         console.assert(err.message === "Request failed with status code 404");
         console.log(err);
+        alert("Locación inválida 😿 ");
       });
 
       // Petición para Forecast
@@ -64,6 +65,7 @@ class Weather extends React.Component {
       })
       .catch(err => {
         console.log(err);
+        alert("No hay pronóstico disponible 😿 ")
       })
     }
   }
