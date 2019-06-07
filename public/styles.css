@@ -1,9 +1,6 @@
 
 body {
   font: 14px sans-serif;
-  background-image: url("./images/soleado.png");
-  background-repeat: no-repeat;
-  width: 750px;
 }
 
 /*
@@ -20,14 +17,110 @@ body {
   
   Ejemplo: .weather-card-clear
 */
-.weather-card { float: right; }
-.weather-card .label { color: #011627; }
+.weather-container {
+	width: 800px;
+	height: 500px;
+
+}
+.hour-selector {
+	height: 20px;
+}
+.weather-card {
+	margin-top: -20px;
+	margin-bottom: -150px;
+	width: 100%;
+	height: 100%;
+	background: url(/images/soleado.png);
+	position: relative;
+	z-index: -30;
+}
+.weather-card-clouds,
+.weather-card-rain
+{
+	background: url(/images/nublado.png);
+}
+
+.weather-card .description {
+	width: 160px;
+	padding-top: 160px;
+	background: url(/images/sol.png);
+	background-repeat: no-repeat;
+	margin-left: 70px;
+	margin-top: 30px;
+}
+
+.weather-card-rain .description {
+	background: url(/images/nube.png);
+
+}
+.weather-info-container{
+	text-align: right;
+	float: right;
+	line-height: 3em;
+	padding: 5px 15px;
+	background-color: rgba(255, 255, 255, .3);
+	position: absolute;
+	top: 0px;
+	right: 15px;
+	height: 100%;
+	padding-top: 50px;
+}
+.weather-card .label { color: #011627; float: left; margin-right: 10px; }
 .weather-card .value { font-weight: bold; }
+.weather-card  .unit{ margin-left: 8px; }
+.unit { color: #333; }
 
 .weather-card .description {
   font-weight: bold;
+  text-align: center;
 }
 
-.selected { border-style: inset; }
+.weather-card h1 {
+	margin: 0;
+	padding-top: 40px;
+	text-align: center;
+	color: white;
+	text-shadow: 1px 1px 0 black;
+}
 
-.day-selector { position:absolute; top:450px; }
+.hour-selector {
+	text-align: right;
+	background-color: darkblue;
+	color: white;
+	opacity: .4;
+	height: 20px;
+	line-height: 12px;
+}
+
+.hour-selector button {
+	border: 0;
+	outline: 0;
+	background-color: transparent;
+	color: inherit;
+	margin: 0;
+
+}
+
+.hour-selector .selected {
+	background-color: white;
+	color: black;
+}
+
+.day-selector button {
+	background: url(/images/sol.png);
+	padding: 0;
+	background-size: 80px;
+	padding-top: 80px;
+	background-repeat: no-repeat;
+	width: 90px;
+	background-position: 4px 4px;
+	height: 140px;
+	border: 1px solid orange;
+	margin: 10px;
+	box-sizing: border-box;
+	margin-top: 0;
+}
+
+.day-selector .selected {
+	background-color: palegoldenrod;
+}

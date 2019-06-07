@@ -1,5 +1,4 @@
 import React from "react";
-import Instagram from "./Instagram.jsx";
 import SearchBar from "./SearchBar.jsx";
 import Weather from "./Weather.jsx";
 
@@ -26,6 +25,5 @@ class Body extends React.Component {
     );
   }
 }
-//           <Instagram user="kardaver" />
 
 export default Body;

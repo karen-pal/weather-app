@@ -69,7 +69,7 @@ class WeatherCard extends React.Component {
       const sunset_time = new Date(info.sys.sunset * 1000);
       sunset = (
         <WeatherAttributes 
-          label="Puesta del sol" 
+          label="Puesta del sol:" 
           value={getHHMMFromTime(sunset_time)} 
           unit="hs"
         />
@@ -80,7 +80,7 @@ class WeatherCard extends React.Component {
       const sunrise_time = new Date(info.sys.sunrise * 1000);
       sunrise = (
         <WeatherAttributes 
-          label="Salida del sol" 
+          label="Salida del sol:" 
           value={getHHMMFromTime(sunrise_time)} 
           unit="hs"
         />
