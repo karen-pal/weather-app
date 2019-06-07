@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 function zeroPad(n) {
   return n < 10 ? '0' + n : String(n);
@@ -51,4 +52,7 @@ class HourSelector extends React.Component {
   }
 }
 
+HourSelector.PropTypes = {
+  onChange : PropTypes.int
+};
 export default HourSelector;
