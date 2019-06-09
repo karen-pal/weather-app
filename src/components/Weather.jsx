@@ -120,8 +120,8 @@ class Weather extends React.Component {
           onChange={n => this.setState({ selected_hour: n })}
         />
         <WeatherCard
-          selected_day={this.state.selected_day}
-          selected_hour={this.state.selected_hour}
+          selectedDay={this.state.selected_day}
+          selectedHour={this.state.selected_hour}
           city={this.state.city}
           country={this.state.country}
           current={this.state.current}
