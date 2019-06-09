@@ -34,10 +34,12 @@ body {
 	position: relative;
 	z-index: -30;
 }
-.weather-card-clouds,
-.weather-card-rain
+.weather-card-clouds
 {
 	background: url(/images/nublado.png);
+}
+.weather-card-rain {
+	background: url(/images/lluvioso.png);
 }
 
 .weather-card .description {
@@ -50,8 +52,10 @@ body {
 }
 
 .weather-card-rain .description {
+	background: url(/images/lluvia.png);
+}
+.weather-card-clouds .description {
 	background: url(/images/nube.png);
-
 }
 .weather-info-container{
 	text-align: right;
