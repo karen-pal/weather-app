@@ -48,7 +48,6 @@ class HourSelector extends React.Component {
       );
     }
 
-
     return <div className="hour-selector">{hourButtons}</div>;
   }
 }

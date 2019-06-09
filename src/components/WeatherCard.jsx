@@ -13,7 +13,15 @@ function getHHMMFromTime(time) {
   return zeroPad(time.getHours()) + ":" + zeroPad(time.getMinutes());
 }
 
-function WeatherCard({ selectedDay, selectedHour, current, forecast, dailyForecast, city, country }) {
+function WeatherCard({
+  selectedDay,
+  selectedHour,
+  current,
+  forecast,
+  dailyForecast,
+  city,
+  country
+}) {
   let info;
 
   // Mostrar la información de AHORA
@@ -61,9 +69,9 @@ function WeatherCard({ selectedDay, selectedHour, current, forecast, dailyForeca
   if (info.sys.sunset !== undefined) {
     const sunsetTime = new Date(info.sys.sunset * 1000);
     sunset = (
-      <WeatherAttributes 
-        label="Puesta del sol:" 
-        value={getHHMMFromTime(sunsetTime)} 
+      <WeatherAttributes
+        label="Puesta del sol:"
+        value={getHHMMFromTime(sunsetTime)}
         unit="hs"
       />
     );
@@ -72,9 +80,9 @@ function WeatherCard({ selectedDay, selectedHour, current, forecast, dailyForeca
   if (info.sys.sunrise !== undefined) {
     const sunriseTime = new Date(info.sys.sunrise * 1000);
     sunrise = (
-      <WeatherAttributes 
-        label="Salida del sol:" 
-        value={getHHMMFromTime(sunriseTime)} 
+      <WeatherAttributes
+        label="Salida del sol:"
+        value={getHHMMFromTime(sunriseTime)}
         unit="hs"
       />
     );
@@ -88,34 +96,18 @@ function WeatherCard({ selectedDay, selectedHour, current, forecast, dailyForeca
         {city} ({country})
       </h1>
       <div className="weather-info-container">
-        <WeatherAttributes 
-          label="Temp:" 
-          value={info.main.temp} 
-          unit="°C"
-        />
-        <WeatherAttributes 
-          label="Min:" 
-          value={dayInfo.min} 
-          unit="°C"
-        />
-        <WeatherAttributes 
-          label="Max:" 
-          value={dayInfo.max} 
-          unit="°C"
-        />
-        <WeatherAttributes 
-          label="Viento:" 
-          value={info.wind.speed} 
-          unit="m/s"
-        />
-        <WeatherAttributes 
-          label="Presión:" 
-          value={(info.main.pressure / 1000).toFixed(3)} 
+        <WeatherAttributes label="Temp:" value={info.main.temp} unit="°C" />
+        <WeatherAttributes label="Min:" value={dayInfo.min} unit="°C" />
+        <WeatherAttributes label="Max:" value={dayInfo.max} unit="°C" />
+        <WeatherAttributes label="Viento:" value={info.wind.speed} unit="m/s" />
+        <WeatherAttributes
+          label="Presión:"
+          value={(info.main.pressure / 1000).toFixed(3)}
           unit="mbar"
         />
-        <WeatherAttributes 
-          label="Humedad:" 
-          value={info.main.humidity} 
+        <WeatherAttributes
+          label="Humedad:"
+          value={info.main.humidity}
           unit="%"
         />
         {sunrise}

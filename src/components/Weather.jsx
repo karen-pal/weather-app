@@ -35,7 +35,10 @@ class Weather extends React.Component {
       this.lastCityCode = cityCode;
       this.setState({ loading_current: true, loading_forecast: true });
       const city = cityCode.replace(/,.*$/, "").trim();
-      const country = cityCode.replace(/^.*,/, "").toUpperCase().trim();
+      const country = cityCode
+        .replace(/^.*,/, "")
+        .toUpperCase()
+        .trim();
       const apiUrl = `https://api.openweathermap.org/data/2.5/`;
       const params = `?q=${city},${country}&appid=${this.appId}&units=metric&lang=es`;
 
@@ -46,7 +49,7 @@ class Weather extends React.Component {
       ])
         .then(([weatherResponse, forecastResponse]) => {
           const dailyForecast = this.getDailyForecast(forecastResponse.data);
-          
+
           this.setState({
             city,
             country,
@@ -57,7 +60,7 @@ class Weather extends React.Component {
             dailyForecast
           });
         })
-        
+
         .catch(err => {
           console.assert(err.message === "Request failed with status code 404");
           console.log(err);
