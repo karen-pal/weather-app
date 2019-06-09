@@ -128,3 +128,7 @@ body {
 .day-selector .selected {
 	background-color: palegoldenrod;
 }
+
+.weather-container-loading {
+	margin: 40px;
+}
