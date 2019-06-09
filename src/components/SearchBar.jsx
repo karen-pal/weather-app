@@ -4,7 +4,6 @@ import axios from "axios";
 class SearchBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { cityNamesInputs: "" };
   }
 
   // realizamos el pedido aquí ya que necesitamos
@@ -13,7 +12,7 @@ class SearchBar extends React.Component {
     axios.get("/city.list.json").then(response => {
       let options = "";
       for (const { name, country } of response.data) {
-        options = options + `<option value='${name}, ${country}'>`;
+        options += `<option value='${name}, ${country}'>`;
       }
 
       this.refs.datalist.innerHTML = options;

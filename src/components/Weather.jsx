@@ -130,7 +130,7 @@ class Weather extends React.Component {
         />
         <DaySelector
           forecast={this.state.forecast}
-          selected_day={this.state.selected_day}
+          selectedDay={this.state.selected_day}
           onSelect={n => {
             this.setState({
               selected_day: n,

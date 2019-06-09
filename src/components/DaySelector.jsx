@@ -13,11 +13,11 @@ class WeatherSelector extends React.Component {
 
   render() {
     const dayButtons = [];
-    const selected = this.props.selected_day;
+    const selected = this.props.selectedDay;
     const now = new Date();
     const today = now.getDay();
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 5; i += 1) {
       const day = (today + i) % 7;
 
       dayButtons.push(
