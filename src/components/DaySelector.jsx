@@ -27,7 +27,7 @@ class WeatherSelector extends React.Component {
           className={
             (i === selected ? "selected " : "") +
             "day-" +
-            this.props.dailyForecast[selected].descr.toLowerCase()
+            this.props.dailyForecast[i].descr.toLowerCase()
           }
         >
           {this.getDayName(day)}

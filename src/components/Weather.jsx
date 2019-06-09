@@ -73,12 +73,11 @@ class Weather extends React.Component {
   //Calculamos los máximos y mínimos de cada día
   getDailyForecast(forecast) {
     const dailyForecast = [
-      { min: Infinity, max: -Infinity, descr: "Clear" },
-      { min: Infinity, max: -Infinity, descr: "Clear" },
-      { min: Infinity, max: -Infinity, descr: "Clear" },
-      { min: Infinity, max: -Infinity, descr: "Clear" },
-      { min: Infinity, max: -Infinity, descr: "Clear" },
-      { min: Infinity, max: -Infinity, descr: "Clear" }
+      { min: Infinity, max: -Infinity, descr: undefined },
+      { min: Infinity, max: -Infinity, descr: undefined },
+      { min: Infinity, max: -Infinity, descr: undefined },
+      { min: Infinity, max: -Infinity, descr: undefined },
+      { min: Infinity, max: -Infinity, descr: undefined }
     ];
 
     const now = new Date();
@@ -87,6 +86,8 @@ class Weather extends React.Component {
     for (let item of forecast.list) {
       const then = new Date(item.dt * 1000);
       const day = (then.getDay() - today + 7) % 7;
+      
+      if (day >= 5) break;
 
       dailyForecast[day].min = Math.min(dailyForecast[day].min, item.main.temp);
       dailyForecast[day].max = Math.max(dailyForecast[day].max, item.main.temp);

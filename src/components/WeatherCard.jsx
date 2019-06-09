@@ -24,11 +24,11 @@ function WeatherCard({
 }) {
   let info;
 
-  // Mostrar la información de AHORA
   if (selectedDay === 0 && selectedHour === 0) {
+    // Mostrar la información de AHORA
     info = current;
-    // Mostrar la información de un momento FUTURO.
   } else {
+    // Mostrar la información de un momento FUTURO.
     const forecastList = forecast.list;
     const now = new Date();
 

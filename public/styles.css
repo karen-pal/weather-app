@@ -51,11 +51,11 @@ body {
 	margin-top: 30px;
 }
 
-.weather-card-rain .description {
-	background: url(/images/lluvia.png);
+.weather-card-rain .description, .day-rain {
+	background-image: url(/images/lluvia.png) !important;
 }
-.weather-card-clouds .description {
-	background: url(/images/nube.png);
+.weather-card-clouds .description, .day-clouds {
+	background-image: url(/images/nube.png) !important;
 }
 .weather-info-container{
 	text-align: right;
