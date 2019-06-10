@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -44,5 +45,13 @@ class SearchBar extends React.Component {
     );
   }
 }
+SearchBar.defaultProps = {
+  onSubmit: () => 0,
+  value: ""
+};
+SearchBar.propTypes = {
+  onSubmit: PropTypes.func,
+  value: PropTypes.string
+};
 
 export default SearchBar;
