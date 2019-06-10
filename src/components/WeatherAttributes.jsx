@@ -12,12 +12,12 @@ function WeatherAttributes({ label, value, unit }) {
 }
 WeatherAttributes.defaultProps = {
   label: "",
-  value: "",
+  value: 0,
   unit: ""
 };
 WeatherAttributes.propTypes = {
   label: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   unit: PropTypes.string
 };
 
