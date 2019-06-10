@@ -48,7 +48,7 @@ class Weather extends React.Component {
         axios.get(`${apiUrl}forecast${params}`)
       ])
         .then(([weatherResponse, forecastResponse]) => {
-          const dailyForecast = this.getDailyForecast(forecastResponse.data);
+          const dailyForecast = this.getDailyForecast(currentResponse.data, forecastResponse.data);
 
           this.setState({
             city,
@@ -71,13 +71,13 @@ class Weather extends React.Component {
   }
 
   //Calculamos los máximos y mínimos de cada día
-  getDailyForecast(forecast) {
+  getDailyForecast(current, forecast) {
     const dailyForecast = [
-      { min: Infinity, max: -Infinity, descr: undefined },
-      { min: Infinity, max: -Infinity, descr: undefined },
-      { min: Infinity, max: -Infinity, descr: undefined },
-      { min: Infinity, max: -Infinity, descr: undefined },
-      { min: Infinity, max: -Infinity, descr: undefined }
+      { min: current.main.temp_min, max: info.main.temp_max, descr: info.weather[0].main },
+      { min: Infinity, max: -Infinity, descr: "clear" },
+      { min: Infinity, max: -Infinity, descr: "clear" },
+      { min: Infinity, max: -Infinity, descr: "clear" },
+      { min: Infinity, max: -Infinity, descr: "clear" }
     ];
 
     const now = new Date();
@@ -89,8 +89,8 @@ class Weather extends React.Component {
       
       if (day >= 5) break;
 
-      dailyForecast[day].min = Math.min(dailyForecast[day].min, item.main.temp);
-      dailyForecast[day].max = Math.max(dailyForecast[day].max, item.main.temp);
+      dailyForecast[day].min = Math.min(dailyForecast[day].min, item.main.temp_min);
+      dailyForecast[day].max = Math.max(dailyForecast[day].max, item.main.temp_max);
 
       // Decidimos tomar la descripción del clima de las 15:00 como representativa.
       if (then.getHours() === 15) {
