@@ -190,12 +190,10 @@ class Weather extends React.Component {
   }
 }
 Weather.defaultProps = {
-  cityCode: "Córdoba,ES",
-  lastCityCode: "Córdoba,ES"
+  cityCode: "Córdoba,ES"
 };
 Weather.propTypes = {
-  cityCode: PropTypes.string,
-  lastCityCode: PropTypes.string
+  cityCode: PropTypes.string
 };
 
 export default Weather;
