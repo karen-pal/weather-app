@@ -21,12 +21,13 @@ class SearchBar extends React.Component {
   }
 
   render() {
+    const { onSubmit, value } = this.props;
     return (
       <form
         className="search-bar"
         onSubmit={event => {
           event.preventDefault();
-          this.props.onSubmit(this.refs.input.value);
+          onSubmit(this.refs.input.value);
         }}
       >
         <label htmlFor="buscar-ciudad">Buscar ciudad:</label>
@@ -36,7 +37,7 @@ class SearchBar extends React.Component {
           type="search"
           ref="input"
           list="city-names"
-          defaultValue={this.props.value || ""}
+          defaultValue={value || ""}
         />
         <br />
         <input type="submit" value="Buscar" />
