@@ -20,7 +20,7 @@ class Body extends React.Component {
             this.setState({ cityCode: value });
           }}
         />
-        <Weather ref="weather" cityCode={this.state.cityCode} />
+        <Weather ref="weather" cityCode={cityCode} />
       </div>
     );
   }
