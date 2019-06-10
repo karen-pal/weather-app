@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 class WeatherSelector extends React.Component {
   constructor(props) {
@@ -42,5 +43,15 @@ class WeatherSelector extends React.Component {
     return <div className="day-selector">{dayButtons}</div>;
   }
 }
+WeatherSelector.defaultProps = {
+  selectedDay: 0,
+  onSelect: () => 0,
+  dailyForecast: []
+};
+WeatherSelector.propTypes = {
+  selectedDay: PropTypes.number,
+  onSelect: PropTypes.func,
+  dailyForecast: PropTypes.array
+};
 
 export default WeatherSelector;
