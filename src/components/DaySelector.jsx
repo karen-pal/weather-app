@@ -4,9 +4,10 @@ import PropTypes from "prop-types";
 class DaySelector extends React.Component {
   constructor(props) {
     super(props);
+    const { onSelect } = this.props;
 
     this.buttonHandler = n => event => {
-      this.props.onSelect(n);
+      onSelect(n);
     };
 
     this.getDayName = n => "Dom,Lun,Mar,Mie,Jue,Vie,Sab".split(",")[n];
@@ -14,7 +15,7 @@ class DaySelector extends React.Component {
 
   render() {
     const dayButtons = [];
-    const selected = this.props.selectedDay;
+    const { selectedDay, dailyForecast } = this.props;
     const now = new Date();
     const today = now.getDay();
 
@@ -26,15 +27,15 @@ class DaySelector extends React.Component {
           onClick={this.buttonHandler(i)}
           key={i}
           className={
-            (i === selected ? "selected " : "") +
+            (i === selectedDay ? "selected " : "") +
             "day-" +
-            this.props.dailyForecast[i].descr.toLowerCase()
+            dailyForecast[i].descr.toLowerCase()
           }
         >
           {this.getDayName(day)}
           <br />
-          {Math.round(this.props.dailyForecast[i].min)} /{" "}
-          {Math.round(this.props.dailyForecast[i].max)}{" "}
+          {Math.round(dailyForecast[i].min)} /{" "}
+          {Math.round(dailyForecast[i].max)}{" "}
           <span className="unit">°C</span>
         </button>
       );
@@ -51,7 +52,7 @@ DaySelector.defaultProps = {
 DaySelector.propTypes = {
   selectedDay: PropTypes.number,
   onSelect: PropTypes.func,
-  dailyForecast: PropTypes.array
+  dailyForecast: PropTypes.instanceOf(Array)
 };
 
 export default DaySelector;
