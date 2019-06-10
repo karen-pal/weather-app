@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import WeatherAttributes from "./WeatherAttributes.jsx";
 
 function zeroPad(n) {
@@ -119,5 +120,23 @@ function WeatherCard({
     </div>
   );
 }
+WeatherCard.defaultProps = {
+  selectedDay: 0,
+  selectedHour: 0,
+  current: {},
+  forecast: {},
+  dailyForecast: [],
+  city: "",
+  country: "",
+};
+WeatherCard.propTypes = {
+  selectedDay: PropTypes.number,
+  selectedHour: PropTypes.number,
+  current: PropTypes.instanceOf(Object),
+  forecast: PropTypes.instanceOf(Object),
+  dailyForecast: PropTypes.instanceOf(Array),
+  city: PropTypes.string,
+  country: PropTypes.string
+};
 
 export default WeatherCard;
