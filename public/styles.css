@@ -129,6 +129,12 @@ body {
 	background-color: palegoldenrod;
 }
 
+.weather-container-error,
 .weather-container-loading {
 	margin: 40px;
+}
+
+.weather-container-error {
+	color: darkred;
+	font-size: 1.2em;
 }

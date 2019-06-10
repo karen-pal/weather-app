@@ -36,7 +36,7 @@ Al buscar una ciudad en SearchBar, se llama al método `onSubmit` que se encarga
 
 Usamos `axios` y la interfaz `Promise.all` (nativa del navegador) para realizar dos llamadas simultáneas a la API.
 
-Dentro de Weather hay *flags* que indican el estado de la petición: `loadingCurrent` y `loadingForecast`.
+Dentro de Weather hay *flags* que indican el estado de la petición: `loading` y `error`.
 
 Al finalizar exitosamente, se guarda toda la información necesaria en el estado de Weather, y se cargan los componentes hijos de Weather. (Evitamos incluir al WeatherCard cuando todavía no tenemos la información necesaria).
 
