@@ -1,4 +1,4 @@
-# Lab 3 - Proyecto MayWeather
+# Proyecto MayWeather
 
 Para testearlo, hacer
 
